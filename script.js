@@ -5,10 +5,6 @@ let characteristic = null;
 
 const status = document.getElementById("status");
 
-if (!navigator.bluetooth) {
-    status.innerHTML = "❌ Web Bluetooth nicht verfügbar";
-}
-
 document.getElementById("connect").onclick = async () => {
 
     try {
@@ -28,11 +24,33 @@ document.getElementById("connect").onclick = async () => {
 
         status.innerHTML = "🟢 Verbunden mit " + device.name;
 
+        // LEDs sofort rot einschalten
+        sendColor(255,0,0,0);
+
     }
     catch (e) {
 
-        status.innerHTML = "❌ " + e;
+        status.innerHTML = e;
 
     }
 
 };
+
+async function sendColor(r,g,b,w){
+
+    if(!characteristic)
+        return;
+
+    const data = new Uint8Array([
+        0,      // alle Streifen
+        r,
+        g,
+        b,
+        w,
+        150,    // Helligkeit
+        0       // statisch
+    ]);
+
+    await characteristic.writeValue(data);
+
+}
