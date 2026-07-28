@@ -2,18 +2,73 @@ const SERVICE_UUID = "12345678-1234-1234-1234-1234567890AB";
 const CHARACTERISTIC_UUID = "87654321-4321-4321-4321-BA0987654321";
 
 let characteristic = null;
+let connected = false;
 
-const status = document.getElementById("status");
+let currentEffect = 0;
 
-document.getElementById("connect").onclick = async () => {
+const connectButton = document.getElementById("connect");
+const statusText = document.getElementById("status");
 
-    try {
+const colorPicker = document.getElementById("colorPicker");
+const brightnessSlider = document.getElementById("brightness");
+const brightnessValue = document.getElementById("brightnessValue");
+const stripSelect = document.getElementById("strip");
+
+brightnessValue.innerText = brightnessSlider.value;
+
+connectButton.onclick = connectBLE;
+
+colorPicker.oninput = sendCurrentSettings;
+
+brightnessSlider.oninput = () => {
+
+    brightnessValue.innerText = brightnessSlider.value;
+    sendCurrentSettings();
+
+};
+
+stripSelect.onchange = sendCurrentSettings;
+
+document.querySelectorAll(".effect").forEach(button => {
+
+    button.onclick = () => {
+
+        currentEffect = Number(button.dataset.effect);
+
+        document.querySelectorAll(".effect").forEach(b => {
+
+            b.style.background = "#374151";
+
+        });
+
+        button.style.background = "#0A84FF";
+
+        sendCurrentSettings();
+
+    };
+
+});
+
+async function connectBLE()
+{
+
+    try
+    {
 
         const device = await navigator.bluetooth.requestDevice({
+
             filters: [
+
                 { name: "ESP32 Ambient" }
+
             ],
-            optionalServices: [SERVICE_UUID]
+
+            optionalServices: [
+
+                SERVICE_UUID
+
+            ]
+
         });
 
         const server = await device.gatt.connect();
@@ -22,35 +77,61 @@ document.getElementById("connect").onclick = async () => {
 
         characteristic = await service.getCharacteristic(CHARACTERISTIC_UUID);
 
-        status.innerHTML = "🟢 Verbunden mit " + device.name;
+        connected = true;
 
-        // LEDs sofort rot einschalten
-        sendColor(255,0,0,0);
+        statusText.innerHTML = "🟢 Verbunden";
 
-    }
-    catch (e) {
-
-        status.innerHTML = e;
+        sendCurrentSettings();
 
     }
+    catch(e)
+    {
 
-};
+        console.error(e);
 
-async function sendColor(r,g,b,w){
+        statusText.innerHTML = "❌ " + e.message;
 
-    if(!characteristic)
+    }
+
+}
+
+async function sendCurrentSettings()
+{
+
+    if(!connected)
         return;
 
+    const hex = colorPicker.value;
+
+    const r = parseInt(hex.substring(1,3),16);
+    const g = parseInt(hex.substring(3,5),16);
+    const b = parseInt(hex.substring(5,7),16);
+
+    const w = 0;
+
+    const brightness = Number(brightnessSlider.value);
+
+    const strip = Number(stripSelect.value);
+
     const data = new Uint8Array([
-        0,      // alle Streifen
+        strip,
         r,
         g,
         b,
         w,
-        150,    // Helligkeit
-        0       // statisch
+        brightness,
+        currentEffect
     ]);
 
-    await characteristic.writeValue(data);
+    try{
+
+        await characteristic.writeValue(data);
+
+    }
+    catch(e){
+
+        console.error(e);
+
+    }
 
 }
