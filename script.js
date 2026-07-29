@@ -14,11 +14,21 @@ const brightnessSlider = document.getElementById("brightness");
 const brightnessValue = document.getElementById("brightnessValue");
 const stripSelect = document.getElementById("strip");
 
+
+const seat1 = document.getElementById("vorne_links");
+const seat2 = document.getElementById("vorne_rechts");
+const seat3 = document.getElementById("hinten_rechts");
+const seat4 = document.getElementById("hinten_links");
+
+
 brightnessValue.innerText = brightnessSlider.value;
 
 connectButton.onclick = connectBLE;
 
-colorPicker.oninput = sendCurrentSettings;
+colorPicker.oninput = () => {
+    changeColor();
+    sendCurrentSettings();
+};
 
 brightnessSlider.oninput = () => {
 
@@ -133,5 +143,34 @@ async function sendCurrentSettings()
         console.error(e);
 
     }
+
+}
+
+async function changeColor(){
+    switch(Number(stripSelect.value)){
+        case 0:
+            seat1.style.background=colorPicker.value;
+            seat2.style.background=colorPicker.value;
+            seat3.style.background=colorPicker.value;
+            seat4.style.background=colorPicker.value;
+        break;
+
+        case 1:
+            seat1.style.background=colorPicker.value;
+        break;
+
+        case 2:
+            seat2.style.background=colorPicker.value;
+        break;
+
+        case 3:
+            seat4.style.background=colorPicker.value;
+        break;
+
+        case 4:
+            seat3.style.background=colorPicker.value;
+        break;
+    }
+
 
 }
