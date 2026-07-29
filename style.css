@@ -8,158 +8,154 @@ body{
 
     background:#111827;
     color:white;
-
     font-family:
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
-
     padding:20px;
 }
 
+.bereichauswahl {
+    margin-right: -20px;
+    margin-left: -20px;
+}
+
+.bereichauswahl img{
+    margin-top: 20px;
+    margin-left: 0%;
+    width: 100%;
+    background-color: grey;
+    box-shadow:0 5px 20px rgba(240,255,255,.2);
+    margin-bottom: 40px;
+}
+
+#vorne_links{
+    position: absolute;
+    background:#ffffff;
+    filter:blur(10px);
+    width: 45px;
+    height: 10px;
+    margin-left: 130px;
+    margin-top: -250px;
+}
+
+#vorne_rechts{
+    position: absolute;
+    background:#ffffff;
+    filter:blur(10px);
+    width: 45px;
+    height: 11px;
+    margin-left: 220px;
+    margin-top: -265px;
+}
+
+#hinten_links{
+    position: absolute;
+    background:#ffffff;
+    filter:blur(5px);
+    width: 50px;
+    height: 5px;
+    margin-left: 125px;
+    margin-top: -157px;
+}
+
+#hinten_rechts{
+    position: absolute;
+    background:#ffffff;
+    filter:blur(5px);
+    width: 50px;
+    height: 5px;
+    margin-left: 222px;
+    margin-top: -157px;
+}
+
+
+
+
 .card{
-
     background:#1F2937;
-
     border-radius:20px;
-
     padding:20px;
-
     margin-bottom:20px;
-
     box-shadow:0 5px 20px rgba(0,0,0,.35);
-
 }
 
 h1{
-
     text-align:center;
-
     margin-bottom:20px;
-
-    font-size:34px;
+    font-size:30px;
 
 }
 
 h2{
-
     margin-bottom:15px;
-
     font-size:20px;
-
 }
 
 button{
-
     width:100%;
-
     height:55px;
-
     border:none;
-
     border-radius:15px;
-
     background:#0A84FF;
-
     color:white;
-
     font-size:20px;
-
     cursor:pointer;
-
     transition:.2s;
-
     margin-top:10px;
-
 }
 
 button:active{
-
     transform:scale(.98);
-
 }
 
 #status{
-
     text-align:center;
-
     margin-top:15px;
-
     color:#A5B4C3;
-
     font-size:18px;
-
 }
 
 input[type=color]{
-
     width:100%;
-
     height:80px;
-
     border:none;
-
     background:none;
-
     cursor:pointer;
-
 }
 
 input[type=range]{
-
     width:100%;
-
     margin-top:10px;
-
 }
 
 #brightnessValue{
-
     display:block;
-
     text-align:center;
-
     font-size:24px;
-
     margin-top:15px;
-
 }
 
 select{
-
     width:100%;
-
     height:50px;
-
     border-radius:12px;
-
     border:none;
-
     background:#374151;
-
     color:white;
-
     font-size:18px;
-
     padding-left:10px;
-
 }
 
 .effect{
-
     background:#374151;
-
 }
 
 .effect:hover{
-
     background:#4B5563;
-
 }
 
 #connect{
-
     background:#22C55E;
-
 }
