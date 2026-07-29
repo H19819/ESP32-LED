@@ -13,73 +13,66 @@
 
 <body>
 
-<div class="card">
 
-    <h1>ESP32 Ambient</h1>
+<div class="mainheading">
+    <h1>Ambientebeleuchtung</h1>
+    <button id="connect">Verbinden</button>
+    <p id="status">Nicht verbunden</p>
+</div>
 
-    <button id="connect">
-        Verbinden
-    </button>
 
-    <p id="status">
-        Nicht verbunden
-    </p>
+<div class="bereichauswahl">
+    <img src="top_view.jpg">
+
+    <div id="vorne_links">
+
+    </div>
+
+    <div id="vorne_rechts">
+
+    </div>
+
+    <div id="hinten_rechts">
+
+    </div>
+
+    <div id="hinten_links">
+
+    </div>
 
 </div>
 
 <div class="card">
-
     <h2>Farbe</h2>
-
     <input
         type="color"
         id="colorPicker"
-        value="#ff0000">
-
+        value="#ffffff">
 </div>
 
 <div class="card">
-
     <h2>Helligkeit</h2>
-
     <input
         type="range"
         id="brightness"
         min="0"
         max="255"
-        value="150">
-
-    <span id="brightnessValue">
-        150
-    </span>
-
+        value="128">
+    <span id="brightnessValue">128</span>
 </div>
 
 <div class="card">
-
-    <h2>LED-Streifen</h2>
-
+    <h2>Sitze</h2>
     <select id="strip">
+        <option value="0">Alle </option>
 
-        <option value="0">
-            Alle
-        </option>
+        <option value="1" > Vorne Links</option>
 
-        <option value="1">
-            Vorne Links
-        </option>
+        <option value="2"> Vorne Rechts</option>
 
-        <option value="2">
-            Vorne Rechts
-        </option>
+        <option value="3"> Hinten Links </option>
 
-        <option value="3">
-            Hinten Links
-        </option>
-
-        <option value="4">
-            Hinten Rechts
-        </option>
+        <option value="4"> Hinten Rechts </option>
 
     </select>
 
@@ -89,21 +82,13 @@
 
     <h2>Effekte</h2>
 
-    <button class="effect" data-effect="0">
-        Statisch
-    </button>
-
-    <button class="effect" data-effect="1">
-        Rainbow
-    </button>
-
-    <button class="effect" data-effect="2">
-        Atmen
-    </button>
-
-    <button class="effect" data-effect="3">
-        Police
-    </button>
+    <button class="effect" data-effect="0">Statisch</button>
+    <button class="effect" data-effect="1">Start</button>
+    <button class="effect" data-effect="2"> Regenbogen</button>
+    <button class="effect" data-effect="3">Atmen</button>
+    <button class="effect" data-effect="4">Polizei</button>
+    <button class="effect" data-effect="1">Kaltweiß</button>
+    <button class="effect" data-effect="1">Warmweiß</button>
 
 </div>
 
