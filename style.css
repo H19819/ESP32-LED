@@ -38,6 +38,7 @@ body{
     height: 10px;
     margin-left: 130px;
     margin-top: -250px;
+    contain: paint;
 }
 
 #vorne_rechts{
@@ -48,6 +49,7 @@ body{
     height: 11px;
     margin-left: 220px;
     margin-top: -265px;
+    contain: paint;
 }
 
 #hinten_links{
@@ -58,6 +60,7 @@ body{
     height: 5px;
     margin-left: 125px;
     margin-top: -157px;
+    contain: paint;
 }
 
 #hinten_rechts{
@@ -68,6 +71,7 @@ body{
     height: 5px;
     margin-left: 222px;
     margin-top: -157px;
+    contain: paint;
 }
 
 
